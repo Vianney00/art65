@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACK ZONE — Vêtements Urbains Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<style>
+/* ===== RESET & VARIABLES ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#080808;
+  --red:#e01c1c;
+  --red2:#ff2626;
+  --white:#ffffff;
+  --off-white:#f8f7f5;
+  --gray:#9a9a9a;
+  --light:#f0eeeb;
+  --card:#ffffff;
+  --border:#e8e6e3;
+  --shadow:0 2px 20px rgba(0,0,0,.08);
+  --shadow-lg:0 8px 40px rgba(0,0,0,.14);
+  --radius:14px;
+  --radius-sm:8px;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'Barlow',sans-serif;
+  --nav-h:68px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--font-body);background:var(--off-white);color:var(--black);line-height:1.6;overflow-x:hidden;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{font-family:var(--font-body);cursor:pointer;border:none;outline:none;}
+input,textarea,select{font-family:var(--font-body);}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#f1f1f1;}
+::-webkit-scrollbar-thumb{background:var(--black);border-radius:3px;}
+
+/* ===== TYPOGRAPHY ===== */
+.display{font-family:var(--font-display);letter-spacing:.04em;text-transform:uppercase;}
+
+/* ===== LAYOUT ===== */
+.wrap{max-width:1300px;margin:0 auto;padding:0 2rem;}
+section{padding:6rem 0;}
+.section-head{text-align:center;margin-bottom:3.5rem;}
+.section-head h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.5rem;}
+.section-head p{color:var(--gray);font-size:.95rem;font-weight:400;}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.875rem;letter-spacing:.08em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:999px;border:2px solid transparent;transition:all .25s var(--ease);cursor:pointer;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-red:hover{background:#c01515;transform:translateY(-2px);box-shadow:0 8px 24px rgba(224,28,28,.35);}
+.btn-black{background:var(--black);color:#fff;}
+.btn-black:hover{background:#222;transform:translateY(-2px);}
+.btn-outline{background:transparent;border-color:#fff;color:#fff;}
+.btn-outline:hover{background:#fff;color:var(--black);}
+.btn-outline-dark{background:transparent;border-color:var(--black);color:var(--black);}
+.btn-outline-dark:hover{background:var(--black);color:#fff;}
+.btn-sm{padding:.5rem 1.2rem;font-size:.78rem;}
+
+/* ===== PROMO BAR ===== */
+#promo-bar{background:var(--red);color:#fff;text-align:center;padding:.55rem 1rem;font-size:.8rem;font-weight:600;letter-spacing:.06em;display:flex;align-items:center;justify-content:center;gap:.5rem;position:relative;}
+#promo-bar button{position:absolute;right:1rem;background:none;color:#fff;font-size:1rem;opacity:.7;transition:opacity .2s;}
+#promo-bar button:hover{opacity:1;}
+
+/* ===== HEADER ===== */
+#header{position:sticky;top:0;z-index:900;background:var(--black);height:var(--nav-h);transition:box-shadow .3s;}
+#header.scrolled{box-shadow:0 4px 30px rgba(0,0,0,.5);}
+.header-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.logo{font-family:var(--font-display);font-size:1.7rem;letter-spacing:.06em;color:#fff;white-space:nowrap;}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{color:rgba(255,255,255,.8);font-size:.875rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;position:relative;padding-bottom:2px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:width .25s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-actions{display:flex;align-items:center;gap:1.25rem;}
+.nav-actions button,.nav-actions a{background:none;color:rgba(255,255,255,.8);font-size:1rem;transition:color .2s;position:relative;}
+.nav-actions button:hover,.nav-actions a:hover{color:#fff;}
+#cart-badge{position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;font-size:.65rem;font-weight:700;width:17px;height:17px;border-radius:50%;display:none;align-items:center;justify-content:center;transition:transform .2s;}
+#cart-badge.show{display:flex;}
+#burger{display:none;flex-direction:column;gap:5px;width:24px;background:none;}
+#burger span{display:block;width:100%;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+#burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+#burger.open span:nth-child(2){opacity:0;}
+#burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+#mobile-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#0f0f0f;z-index:850;padding:1.5rem;border-top:1px solid #222;}
+#mobile-nav.open{display:block;}
+#mobile-nav a{display:block;color:#fff;font-weight:600;font-size:1rem;padding:.75rem 0;border-bottom:1px solid #1a1a1a;text-transform:uppercase;letter-spacing:.04em;transition:color .2s;}
+#mobile-nav a:hover{color:var(--red);}
+
+/* ===== SEARCH BAR ===== */
+#search-bar{position:fixed;top:0;left:0;right:0;background:#fff;z-index:950;padding:1rem 2rem;box-shadow:0 4px 20px rgba(0,0,0,.1);display:flex;align-items:center;gap:1rem;transform:translateY(-110%);transition:transform .3s var(--ease);}
+#search-bar.open{transform:translateY(0);}
+#search-bar input{flex:1;border:none;outline:none;font-size:1.1rem;color:var(--black);font-family:var(--font-body);}
+#search-bar button{background:none;color:var(--gray);font-size:1.1rem;transition:color .2s;}
+#search-bar button:hover{color:var(--black);}
+#search-results{position:absolute;top:100%;left:0;right:0;background:#fff;border-top:1px solid var(--border);max-height:360px;overflow-y:auto;box-shadow:0 12px 24px rgba(0,0,0,.08);}
+.search-item{display:flex;align-items:center;gap:1rem;padding:.85rem 2rem;cursor:pointer;transition:background .2s;}
+.search-item:hover{background:var(--light);}
+.search-item img{width:48px;height:48px;border-radius:var(--radius-sm);object-fit:cover;flex-shrink:0;}
+.search-item-name{font-weight:600;font-size:.9rem;}
+.search-item-price{font-size:.82rem;color:var(--red);font-weight:700;}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;color:#fff;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:
+  linear-gradient(135deg,rgba(8,8,8,.85) 0%,rgba(8,8,8,.5) 60%,rgba(8,8,8,.75) 100%),
+  url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=85');
+  background-size:cover;background-position:center;background-attachment:fixed;}
+.hero-content{position:relative;z-index:2;padding:2rem 0;}
+.hero-tag{display:inline-block;background:var(--red);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.14em;padding:.35rem .9rem;border-radius:999px;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero h1{font-family:var(--font-display);font-size:clamp(3.5rem,9vw,7.5rem);line-height:.95;text-transform:uppercase;letter-spacing:.02em;margin-bottom:1.5rem;}
+.hero h1 span{color:var(--red);}
+.hero p{font-size:clamp(1rem,1.5vw,1.2rem);color:rgba(255,255,255,.75);max-width:520px;margin-bottom:2.5rem;font-weight:300;line-height:1.8;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;}
+.hero-scroll span{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollAnim 2s ease-in-out infinite;}
+@keyframes scrollAnim{0%,100%{transform:scaleY(1);opacity:.4;}50%{transform:scaleY(.5);opacity:.1;}}
+
+/* ===== FILTER TABS ===== */
+.filter-tabs{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.filter-tab{padding:.5rem 1.4rem;border-radius:999px;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border:2px solid var(--border);background:#fff;color:var(--gray);transition:all .2s;cursor:pointer;}
+.filter-tab:hover,.filter-tab.active{border-color:var(--black);background:var(--black);color:#fff;}
+
+/* ===== PRODUCTS GRID ===== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.75rem;}
+
+/* ===== PRODUCT CARD ===== */
+.pcard{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s;cursor:pointer;position:relative;}
+.pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
+.pcard-img{position:relative;overflow:hidden;}
+.pcard-img img{width:100%;height:280px;object-fit:cover;transition:transform .5s var(--ease);}
+.pcard:hover .pcard-img img{transform:scale(1.07);}
+.pcard-badge{position:absolute;top:.75rem;left:.75rem;font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.28rem .7rem;border-radius:999px;color:#fff;}
+.badge-new{background:var(--red);}
+.badge-sale{background:#16a34a;}
+.badge-limited{background:#1d4ed8;}
+.badge-pct{position:absolute;top:.75rem;right:.75rem;background:rgba(0,0,0,.75);color:#fff;font-size:.68rem;font-weight:700;padding:.28rem .6rem;border-radius:999px;backdrop-filter:blur(4px);}
+.pcard-wish{position:absolute;bottom:.75rem;right:.75rem;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--gray);transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.pcard-wish:hover,.pcard-wish.active{background:var(--red);color:#fff;}
+.pcard-body{padding:1.1rem 1.25rem 1.4rem;}
+.pcard-cat{font-size:.7rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem;}
+.pcard-name{font-weight:700;font-size:1rem;margin-bottom:.3rem;line-height:1.3;}
+.pcard-desc{font-size:.82rem;color:var(--gray);margin-bottom:.9rem;line-height:1.5;}
+.pcard-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.pcard-price{font-weight:800;font-size:1.1rem;display:flex;align-items:center;gap:.4rem;}
+.pcard-old{font-size:.82rem;color:var(--gray);text-decoration:line-through;font-weight:400;}
+.pcard-actions{display:flex;gap:.4rem;}
+.pcard-add{padding:.45rem 1rem;border-radius:999px;background:var(--black);color:#fff;font-size:.76rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;}
+.pcard-add:hover{background:var(--red);}
+.pcard-view{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--gray);transition:all .2s;}
+.pcard-view:hover{border-color:var(--black);color:var(--black);}
+
+/* ===== CATEGORIES ===== */
+.cats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.cat-card{position:relative;border-radius:var(--radius);overflow:hidden;height:380px;cursor:pointer;}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.cat-card:hover img{transform:scale(1.07);}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.78) 0%,rgba(8,8,8,.15) 55%,transparent 100%);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:2rem;transition:background .3s;}
+.cat-card:hover .cat-overlay{background:linear-gradient(to top,rgba(224,28,28,.72) 0%,rgba(8,8,8,.15) 55%,transparent 100%);}
+.cat-overlay h3{font-family:var(--font-display);font-size:2.2rem;color:#fff;letter-spacing:.06em;margin-bottom:.4rem;}
+.cat-overlay p{color:rgba(255,255,255,.75);font-size:.88rem;margin-bottom:1rem;}
+.cat-btn{display:inline-flex;align-items:center;gap:.4rem;background:#fff;color:var(--black);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:999px;transition:all .2s;}
+.cat-card:hover .cat-btn{background:var(--black);color:#fff;}
+
+/* ===== BANNER LIMITED ===== */
+.banner-limited{background:var(--black);color:#fff;padding:6rem 0;text-align:center;position:relative;overflow:hidden;}
+.banner-limited::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 20% 50%,rgba(224,28,28,.12) 0%,transparent 60%),
+  radial-gradient(ellipse at 80% 50%,rgba(224,28,28,.08) 0%,transparent 60%);
+  pointer-events:none;}
+.banner-content{position:relative;z-index:1;}
+.banner-label{display:inline-block;border:1px solid rgba(224,28,28,.5);color:var(--red);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .9rem;border-radius:999px;margin-bottom:1.5rem;}
+.banner-content h2{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);line-height:.95;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1rem;}
+.banner-content p{color:rgba(255,255,255,.6);max-width:600px;margin:0 auto 2.5rem;font-weight:300;}
+.countdown{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.cd-block{text-align:center;}
+.cd-num{display:block;font-family:var(--font-display);font-size:3.5rem;line-height:1;color:var(--red);min-width:80px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);padding:.3rem .6rem;}
+.cd-sep{font-family:var(--font-display);font-size:3rem;color:rgba(255,255,255,.2);margin-top:0;}
+.cd-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.4rem;}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-section{background:var(--light);}
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.75rem;}
+.tcard{background:#fff;border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);position:relative;}
+.tcard::before{content:'"';position:absolute;top:.75rem;left:1.25rem;font-size:5rem;color:var(--red);opacity:.07;font-family:Georgia,serif;line-height:1;}
+.tcard-stars{color:#f59e0b;font-size:.9rem;margin-bottom:.85rem;}
+.tcard-text{color:#444;font-size:.93rem;line-height:1.75;margin-bottom:1.25rem;}
+.tcard-author{display:flex;align-items:center;gap:.85rem;}
+.tcard-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;}
+.tcard-name{font-weight:700;font-size:.9rem;}
+.tcard-since{font-size:.78rem;color:var(--gray);}
+
+/* ===== NEWSLETTER ===== */
+.newsletter-section{background:var(--black);color:#fff;text-align:center;}
+.newsletter-section h2{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem;}
+.newsletter-section p{color:rgba(255,255,255,.55);margin-bottom:2.5rem;font-size:.95rem;font-weight:300;}
+.newsletter-section strong{color:var(--red);}
+.nl-form{display:flex;gap:.75rem;max-width:520px;margin:0 auto 1rem;flex-wrap:wrap;}
+.nl-form input{flex:1;min-width:220px;border:none;border-radius:999px;padding:.85rem 1.5rem;font-size:.9rem;color:var(--black);outline:none;font-family:var(--font-body);}
+.nl-feedback{font-size:.85rem;color:rgba(255,255,255,.45);min-height:1.2rem;}
+.nl-feedback.ok{color:#4ade80;}
+
+/* ===== FOOTER ===== */
+.footer{background:#0a0a0a;color:rgba(255,255,255,.55);padding:5rem 0 2rem;}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:4rem;}
+.footer-brand .logo{margin-bottom:1rem;display:block;}
+.footer-brand p{font-size:.88rem;line-height:1.75;margin-bottom:1.25rem;}
+.footer-socials{display:flex;gap:.6rem;}
+.footer-socials a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all .2s;}
+.footer-socials a:hover{border-color:#fff;color:#fff;transform:translateY(-2px);}
+.footer-col h4{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.25rem;}
+.footer-col ul li{margin-bottom:.6rem;}
+.footer-col ul a{font-size:.88rem;transition:color .2s;}
+.footer-col ul a:hover{color:#fff;}
+.footer-contact p{font-size:.88rem;margin-bottom:.6rem;display:flex;align-items:flex-start;gap:.6rem;}
+.footer-contact i{color:var(--red);width:14px;margin-top:.15rem;flex-shrink:0;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:1.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.82rem;}
+.pay-icons{display:flex;gap:.75rem;font-size:1.5rem;opacity:.4;}
+
+/* ===== CART DRAWER ===== */
+.cart-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(3px);}
+.cart-backdrop.open{opacity:1;pointer-events:auto;}
+.cart-drawer{position:fixed;top:0;right:0;width:420px;height:100%;background:#fff;z-index:1001;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s var(--ease);box-shadow:-8px 0 40px rgba(0,0,0,.12);}
+.cart-drawer.open{transform:translateX(0);}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:1.5rem;border-bottom:1px solid var(--border);}
+.cart-head h3{font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:.5rem;}
+.cart-close{background:none;color:var(--gray);font-size:1.2rem;transition:color .2s;}
+.cart-close:hover{color:var(--black);}
+.cart-items{flex:1;overflow-y:auto;padding:1rem 1.5rem;}
+.cart-items::-webkit-scrollbar{width:3px;}
+.cart-items::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px;}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--gray);}
+.cart-empty i{font-size:2.5rem;margin-bottom:1rem;display:block;opacity:.4;}
+.cart-item{display:flex;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--border);}
+.cart-item:last-child{border-bottom:none;}
+.cart-item img{width:70px;height:70px;border-radius:var(--radius-sm);object-fit:cover;flex-shrink:0;}
+.ci-info{flex:1;min-width:0;}
+.ci-name{font-weight:600;font-size:.9rem;margin-bottom:.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ci-size{font-size:.78rem;color:var(--gray);}
+.ci-price{font-weight:700;font-size:.95rem;color:var(--red);margin-top:.3rem;}
+.ci-qty{display:flex;align-items:center;gap:.5rem;margin-top:.5rem;}
+.ci-qty button{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;transition:all .2s;}
+.ci-qty button:hover{border-color:var(--black);background:var(--black);color:#fff;}
+.ci-qty span{font-weight:600;font-size:.88rem;min-width:1.5rem;text-align:center;}
+.ci-del{background:none;color:var(--gray);font-size:.9rem;transition:color .2s;align-self:flex-start;padding:.2rem;}
+.ci-del:hover{color:var(--red);}
+.cart-foot{padding:1.25rem 1.5rem;border-top:1px solid var(--border);}
+.promo-row{display:flex;gap:.5rem;margin-bottom:1.25rem;}
+.promo-row input{flex:1;border:1.5px solid var(--border);border-radius:999px;padding:.6rem 1rem;font-size:.85rem;outline:none;transition:border-color .2s;text-transform:uppercase;}
+.promo-row input:focus{border-color:var(--black);}
+.promo-row button{padding:.6rem 1rem;border-radius:999px;background:var(--black);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.05em;transition:background .2s;}
+.promo-row button:hover{background:var(--red);}
+.cart-totals{margin-bottom:1.25rem;}
+.ct-row{display:flex;justify-content:space-between;font-size:.9rem;padding:.3rem 0;color:var(--gray);}
+.ct-row.total{font-weight:800;font-size:1.05rem;color:var(--black);border-top:1.5px solid var(--border);padding-top:.75rem;margin-top:.4rem;}
+.ct-discount{color:#16a34a;display:none;}
+.cart-cta{width:100%;padding:1rem;border-radius:999px;background:var(--red);color:#fff;font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.cart-cta:hover{background:#c01515;}
+
+/* ===== MODALS ===== */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1100;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
+.modal-bg.open{opacity:1;pointer-events:auto;}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;transform:translateY(20px) scale(.97);transition:transform .3s var(--ease);box-shadow:0 30px 80px rgba(0,0,0,.2);}
+.modal-bg.open .modal-box{transform:translateY(0) scale(1);}
+.modal-box.order-modal-box{max-width:560px;}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1.5rem;border-bottom:1px solid var(--border);}
+.modal-head h3{font-weight:700;font-size:1.1rem;}
+.modal-x{background:none;color:var(--gray);font-size:1.2rem;transition:color .2s;}
+.modal-x:hover{color:var(--black);}
+.modal-body{padding:1.5rem;}
+
+/* Quick view */
+.qv-grid{display:grid;grid-template-columns:1fr 1fr;}
+.qv-grid .qv-img-side{position:relative;overflow:hidden;border-radius:20px 0 0 20px;}
+.qv-img-side img{width:100%;height:100%;object-fit:cover;}
+.qv-info-side{padding:2rem;}
+.qv-cat{font-size:.72rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem;}
+.qv-name{font-size:1.4rem;font-weight:800;margin-bottom:.5rem;line-height:1.25;}
+.qv-price{font-size:1.5rem;font-weight:800;margin-bottom:.25rem;display:flex;align-items:center;gap:.5rem;}
+.qv-old{font-size:.9rem;color:var(--gray);text-decoration:line-through;font-weight:400;}
+.qv-desc{font-size:.88rem;color:var(--gray);line-height:1.7;margin-bottom:1.25rem;}
+.qv-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;color:var(--black);}
+.qv-sizes{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem;}
+.size-btn{padding:.4rem .85rem;border-radius:var(--radius-sm);border:2px solid var(--border);font-size:.8rem;font-weight:700;background:#fff;color:var(--black);transition:all .2s;cursor:pointer;}
+.size-btn:hover,.size-btn.active{border-color:var(--black);background:var(--black);color:#fff;}
+.qv-qty-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.qty-ctrl{display:flex;align-items:center;gap:.6rem;}
+.qty-ctrl button{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;transition:all .2s;}
+.qty-ctrl button:hover{border-color:var(--black);background:var(--black);color:#fff;}
+.qty-ctrl span{font-weight:700;min-width:1.5rem;text-align:center;}
+
+/* Order form */
+.order-modal-head{background:var(--black);border-radius:20px 20px 0 0;padding:1.75rem;display:flex;justify-content:space-between;align-items:flex-start;}
+.order-modal-head h3{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.06em;color:#fff;}
+.order-modal-head p{color:rgba(255,255,255,.45);font-size:.82rem;margin-top:.25rem;}
+.order-modal-head button{background:none;color:rgba(255,255,255,.5);font-size:1.1rem;transition:color .2s;}
+.order-modal-head button:hover{color:#fff;}
+.order-summary{background:var(--light);border-radius:var(--radius-sm);padding:1rem 1.25rem;margin-bottom:1.5rem;}
+.order-summary h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--gray);margin-bottom:.75rem;}
+.os-item{display:flex;justify-content:space-between;font-size:.88rem;padding:.25rem 0;color:#555;}
+.os-total{display:flex;justify-content:space-between;font-size:1rem;font-weight:800;border-top:1.5px solid var(--border);padding-top:.75rem;margin-top:.4rem;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.fgroup{margin-bottom:1rem;}
+.fgroup label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:.4rem;}
+.fgroup input,.fgroup select,.fgroup textarea{width:100%;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:.7rem .9rem;font-size:.9rem;font-family:var(--font-body);color:var(--black);outline:none;transition:border-color .2s,box-shadow .2s;background:#fff;}
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:var(--black);box-shadow:0 0 0 3px rgba(8,8,8,.07);}
+.fgroup input.err,.fgroup select.err{border-color:var(--red);}
+.ferr{color:var(--red);font-size:.75rem;margin-top:.25rem;display:none;}
+.ferr.show{display:block;}
+.pay-opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem;}
+.pay-opt{flex:1;min-width:80px;border:2px solid var(--border);border-radius:var(--radius-sm);padding:.85rem .5rem;text-align:center;cursor:pointer;transition:all .2s;}
+.pay-opt:hover,.pay-opt.active{border-color:var(--black);background:var(--black);color:#fff;}
+.pay-opt i{font-size:1.2rem;display:block;margin-bottom:.3rem;}
+.pay-opt span{font-size:.72rem;font-weight:700;letter-spacing:.04em;}
+.order-submit{width:100%;padding:1rem 1.5rem;border-radius:999px;background:var(--red);color:#fff;font-size:.9rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;margin-top:1.25rem;}
+.order-submit:hover{background:#c01515;}
+.order-submit:disabled{background:var(--gray);cursor:not-allowed;}
+.secure-note{text-align:center;font-size:.78rem;color:var(--gray);margin-top:.75rem;}
+.secure-note i{color:var(--red);}
+
+/* Order success */
+.order-success{text-align:center;padding:3rem 2rem;}
+.success-check{width:72px;height:72px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.75rem;color:#16a34a;margin:0 auto 1.5rem;}
+.order-success h3{font-size:1.4rem;font-weight:800;margin-bottom:.5rem;}
+.order-success p{color:var(--gray);font-size:.9rem;margin-bottom:.5rem;}
+.order-id-box{background:var(--light);border-radius:var(--radius-sm);padding:.85rem 1.25rem;font-family:monospace;font-size:.95rem;font-weight:700;margin:1.25rem 0;color:var(--black);}
+
+/* ===== TOAST ===== */
+#toast{position:fixed;bottom:1.75rem;right:1.75rem;background:var(--black);color:#fff;padding:.9rem 1.4rem;border-radius:var(--radius-sm);font-size:.88rem;font-weight:500;box-shadow:var(--shadow-lg);z-index:9999;border-left:4px solid var(--red);max-width:330px;opacity:0;transform:translateY(12px);pointer-events:none;transition:all .35s var(--ease);}
+#toast.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+
+/* ===== REVEAL ANIM ===== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal.on{opacity:1;transform:translateY(0);}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .cats-grid{grid-template-columns:1fr 1fr;}
+  .cats-grid .cat-card:last-child{grid-column:1/-1;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-actions .hide-mobile{display:none!important;}
+  #burger{display:flex;}
+  .hero h1{font-size:3.5rem;}
+  .cats-grid{grid-template-columns:1fr;}
+  .qv-grid{grid-template-columns:1fr;}
+  .qv-grid .qv-img-side{height:240px;border-radius:20px 20px 0 0;}
+  .cart-drawer{width:100%;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .form-row-2{grid-template-columns:1fr;}
+}
+@media(max-width:540px){
+  .wrap{padding:0 1.25rem;}
+  section{padding:4rem 0;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== PROMO BAR ===== -->
+<div id="promo-bar">
+  <span>🔥 LIVRAISON GRATUITE dès 80 € · Code <strong>BLACKZONE10</strong> pour −10%</span>
+  <button onclick="this.parentElement.remove()" aria-label="Fermer">✕</button>
+</div>
+
+<!-- ===== SEARCH BAR ===== -->
+<div id="search-bar">
+  <i class="fas fa-search" style="color:var(--gray)"></i>
+  <input id="search-input" type="search" placeholder="Rechercher un produit…">
+  <div id="search-results"></div>
+  <button onclick="closeSearch()"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="wrap header-inner">
+    <a href="#" class="logo" onclick="showPage('home')">BLACK<span>ZONE</span></a>
+
+    <button id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-links">
+      <a href="#" onclick="showPage('home')" id="nl-home" class="active">Accueil</a>
+      <a href="#" onclick="showPage('homme')" id="nl-homme">Hommes</a>
+      <a href="#" onclick="showPage('femme')" id="nl-femme">Femmes</a>
+      <a href="#" onclick="showPage('enfant')" id="nl-enfant">Enfants</a>
+      <a href="#" onclick="showPage('home');setTimeout(()=>scrollTo('#collections'),200)">Collections</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button onclick="openSearch()" aria-label="Rechercher"><i class="fas fa-search"></i></button>
+      <button class="hide-mobile" onclick="toast('Espace compte bientôt disponible 😉')" aria-label="Mon compte"><i class="fas fa-user"></i></button>
+      <button onclick="openCart()" aria-label="Panier" style="position:relative">
+        <i class="fas fa-shopping-bag" style="font-size:1.05rem"></i>
+        <span id="cart-badge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav id="mobile-nav">
+  <a href="#" onclick="showPage('home');closeMobileNav()">Accueil</a>
+  <a href="#" onclick="showPage('homme');closeMobileNav()">Hommes</a>
+  <a href="#" onclick="showPage('femme');closeMobileNav()">Femmes</a>
+  <a href="#" onclick="showPage('enfant');closeMobileNav()">Enfants</a>
+  <a href="#" onclick="showPage('home');scrollTo('#collections');closeMobileNav()">Collections</a>
+  <a href="#" onclick="openCart();closeMobileNav()">🛍 Panier</a>
+  <a href="#" onclick="openSearch();closeMobileNav()">🔍 Rechercher</a>
+</nav>
+
+<!-- ===== PAGE HOME ===== -->
+<div id="page-home" class="bz-page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <div class="hero-content">
+        <span class="hero-tag">Collection Automne / Hiver 2024</span>
+        <h1>ÉLÉGANCE<br><span>URBAINE</span></h1>
+        <p>Des pièces taillées pour la rue. Style, attitude et qualité premium — c'est Black Zone.</p>
+        <div class="hero-actions">
+          <button class="btn btn-red" onclick="scrollTo('#products')">Acheter maintenant</button>
+          <button class="btn btn-outline" onclick="scrollTo('#collections')">Voir les collections</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span></span>Défiler
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section id="products" style="background:#fff;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Nouvelles Arrivées</h2>
+        <p>Des pièces exclusives sélectionnées pour vous</p>
+      </div>
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-f="all"    onclick="filter('all')">Tout</button>
+        <button class="filter-tab"        data-f="homme"  onclick="filter('homme')">Hommes</button>
+        <button class="filter-tab"        data-f="femme"  onclick="filter('femme')">Femmes</button>
+        <button class="filter-tab"        data-f="enfant" onclick="filter('enfant')">Enfants</button>
+        <button class="filter-tab"        data-f="promo"  onclick="filter('promo')">Promotions</button>
+      </div>
+      <div id="products-grid" class="products-grid"></div>
+      <div style="text-align:center;margin-top:3rem">
+        <button id="load-more-btn" class="btn btn-outline-dark" onclick="loadMore()">Voir plus de produits</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER LIMITED -->
+  <section class="banner-limited">
+    <div class="wrap">
+      <div class="banner-content">
+        <span class="banner-label">Quantité limitée</span>
+        <h2>Édition Limitée<br>« Midnight »</h2>
+        <p>La collection Midnight repousse les limites du style nocturne. Noir absolu, silhouettes épurées, luxe discret.</p>
+        <div class="countdown">
+          <div class="cd-block"><span class="cd-num" id="cd-h">00</span><p class="cd-label">Heures</p></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-block"><span class="cd-num" id="cd-m">00</span><p class="cd-label">Min</p></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-block"><span class="cd-num" id="cd-s">00</span><p class="cd-label">Sec</p></div>
+        </div>
+        <button class="btn btn-red" onclick="filter('limited');scrollTo('#products')">Découvrir la collection →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÉGORIES -->
+  <section id="collections">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Shopping par catégorie</h2>
+        <p>Trouvez le style qui vous ressemble</p>
+      </div>
+      <div class="cats-grid">
+        <div class="cat-card reveal" onclick="showPage('homme')" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=800&q=80" alt="Hommes" loading="lazy">
+          <div class="cat-overlay">
+            <h3>Hommes</h3>
+            <p>Vestes, hoodies, streetwear & plus</p>
+            <span class="cat-btn"><i class="fas fa-arrow-right"></i> Voir la collection</span>
+          </div>
+        </div>
+        <div class="cat-card reveal" onclick="showPage('femme')" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80" alt="Femmes" loading="lazy">
+          <div class="cat-overlay">
+            <h3>Femmes</h3>
+            <p>Robes, tops, ensembles & accessoires</p>
+            <span class="cat-btn"><i class="fas fa-arrow-right"></i> Voir la collection</span>
+          </div>
+        </div>
+        <div class="cat-card reveal" onclick="showPage('enfant')" role="button" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=800&q=80" alt="Enfants" loading="lazy">
+          <div class="cat-overlay">
+            <h3>Enfants</h3>
+            <p>Looks urbains pour les plus petits</p>
+            <span class="cat-btn"><i class="fas fa-arrow-right"></i> Voir la collection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="testimonials-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Ce que disent nos clients</h2>
+        <p>Ils ont fait confiance à Black Zone</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="tcard reveal">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">"Les produits Black Zone sont d'une qualité exceptionnelle. Je commande régulièrement et je ne suis jamais déçu !"</p>
+          <div class="tcard-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Jean D.">
+            <div><div class="tcard-name">Jean D.</div><div class="tcard-since">Client depuis 2021</div></div>
+          </div>
+        </div>
+        <div class="tcard reveal">
+          <div class="tcard-stars">★★★★<span style="color:#d1d5db">★</span></div>
+          <p class="tcard-text">"Livraison ultra-rapide et produits conformes à la description. Je suis très satisfaite, je recommande vraiment !"</p>
+          <div class="tcard-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie M.">
+            <div><div class="tcard-name">Sophie M.</div><div class="tcard-since">Cliente depuis 2022</div></div>
+          </div>
+        </div>
+        <div class="tcard reveal">
+          <div class="tcard-stars">★★★★★</div>
+          <p class="tcard-text">"Le style urbain de Black Zone est unique. Je ne porte plus que leurs vêtements. La qualité est vraiment au rendez-vous."</p>
+          <div class="tcard-author">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Thomas L.">
+            <div><div class="tcard-name">Thomas L.</div><div class="tcard-since">Client depuis 2020</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="wrap">
+      <h2>Rejoignez la Black Zone Family</h2>
+      <p>Recevez <strong>10% de réduction</strong> sur votre première commande et soyez le premier informé de nos nouveautés.</p>
+      <form class="nl-form" onsubmit="subscribeNL(event)">
+        <input id="nl-email" type="email" placeholder="Votre adresse email…" required>
+        <button type="submit" class="btn btn-red">S'abonner →</button>
+      </form>
+      <p id="nl-feedback" class="nl-feedback"></p>
+    </div>
+  </section>
+
+</div><!-- end page-home -->
+
+<!-- ===== PAGE HOMME ===== -->
+<div id="page-homme" class="bz-page" style="display:none">
+  <div style="background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=1400&q=80') center/cover;color:#fff;padding:6rem 0 4rem;">
+    <div class="wrap">
+      <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:.75rem">
+        <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,.5);hover:color:#fff">Accueil</a> / Hommes
+      </p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);letter-spacing:.04em;text-transform:uppercase;line-height:.95;margin-bottom:1rem">Collection<br>Hommes</h1>
+      <p style="color:rgba(255,255,255,.65);max-width:500px;font-weight:300;margin-bottom:2rem">Style urbain authentique pour l'homme moderne qui revendique son identité.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;backdrop-filter:blur(4px)">24 Articles</span>
+        <span style="background:var(--red);color:#fff;padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600">Nouvelles arrivées</span>
+      </div>
+    </div>
+  </div>
+  <section style="background:#fff;padding:4rem 0;">
+    <div class="wrap">
+      <div class="filter-tabs" id="homme-filters">
+        <button class="filter-tab active" onclick="filterCat('homme','all',this)">Tout</button>
+        <button class="filter-tab" onclick="filterCat('homme','vestes',this)">Vestes</button>
+        <button class="filter-tab" onclick="filterCat('homme','tshirts',this)">T-Shirts & Hoodies</button>
+        <button class="filter-tab" onclick="filterCat('homme','pantalons',this)">Pantalons</button>
+        <button class="filter-tab" onclick="filterCat('homme','chaussures',this)">Chaussures</button>
+      </div>
+      <div id="homme-grid" class="products-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PAGE FEMME ===== -->
+<div id="page-femme" class="bz-page" style="display:none">
+  <div style="background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1400&q=80') center/cover;color:#fff;padding:6rem 0 4rem;">
+    <div class="wrap">
+      <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:.75rem">
+        <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,.5)">Accueil</a> / Femmes
+      </p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);letter-spacing:.04em;text-transform:uppercase;line-height:.95;margin-bottom:1rem">Collection<br>Femmes</h1>
+      <p style="color:rgba(255,255,255,.65);max-width:500px;font-weight:300;margin-bottom:2rem">Élégance urbaine et féminité moderne. Des créations pour la femme qui ose.</p>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <span style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600;backdrop-filter:blur(4px)">18 Articles</span>
+        <span style="background:var(--red);color:#fff;padding:.4rem 1rem;border-radius:999px;font-size:.8rem;font-weight:600">Nouvelle saison</span>
+      </div>
+    </div>
+  </div>
+  <section style="background:#fff;padding:4rem 0;">
+    <div class="wrap">
+      <div class="filter-tabs" id="femme-filters">
+        <button class="filter-tab active" onclick="filterCat('femme','all',this)">Tout</button>
+        <button class="filter-tab" onclick="filterCat('femme','robes',this)">Robes</button>
+        <button class="filter-tab" onclick="filterCat('femme','hoodies',this)">Hoodies</button>
+        <button class="filter-tab" onclick="filterCat('femme','leggings',this)">Leggings</button>
+        <button class="filter-tab" onclick="filterCat('femme','tops',this)">Tops</button>
+      </div>
+      <div id="femme-grid" class="products-grid"></div>
+    </div>
+  </section>
+  <section style="background:var(--light);padding:5rem 0;">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+      <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=700&q=80" style="border-radius:var(--radius);width:100%;height:400px;object-fit:cover" alt="Look femme">
+      <div>
+        <span style="font-size:.72rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.12em;">Look du moment</span>
+        <h2 style="font-family:var(--font-display);font-size:2.5rem;letter-spacing:.04em;text-transform:uppercase;margin:.75rem 0 1rem">Night Out Set</h2>
+        <p style="color:var(--gray);line-height:1.75;margin-bottom:2rem">Associez la Robe Night Out avec le Hoodie Femme Zone pour un look chic et confortable. Parfait pour une soirée urbaine en toute élégance.</p>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <button class="btn btn-black" onclick="openQV(5)">Robe Night Out — 74,99€</button>
+          <button class="btn btn-outline-dark" onclick="openQV(6)">Hoodie Zone — 69,99€</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PAGE ENFANT ===== -->
+<div id="page-enfant" class="bz-page" style="display:none">
+  <div style="background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),url('https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1400&q=80') center/cover;color:#fff;padding:6rem 0 4rem;">
+    <div class="wrap">
+      <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:.75rem">
+        <a href="#" onclick="showPage('home')" style="color:rgba(255,255,255,.5)">Accueil</a> / Enfants
+      </p>
+      <h1 style="font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);letter-spacing:.04em;text-transform:uppercase;line-height:.95;margin-bottom:1rem">Collection<br>Enfants</h1>
+      <p style="color:rgba(255,255,255,.65);max-width:500px;font-weight:300">Le style urbain pour les plus petits. Confort, durabilité et tendance.</p>
+    </div>
+  </div>
+  <section style="background:#fff;padding:4rem 0;">
+    <div class="wrap">
+      <div id="enfant-grid" class="products-grid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FOOTER (commun) ===== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" onclick="showPage('home')" class="logo" style="display:inline-block;margin-bottom:1rem">BLACK<span>ZONE</span></a>
+        <p>Vêtements urbains premium pour un style qui vous ressemble.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Catégories</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('homme')">Hommes</a></li>
+          <li><a href="#" onclick="showPage('femme')">Femmes</a></li>
+          <li><a href="#" onclick="showPage('enfant')">Enfants</a></li>
+          <li><a href="#" onclick="filter('promo');showPage('home')">Promotions</a></li>
+          <li><a href="#" onclick="showPage('home');scrollTo('#collections')">Collections</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service client</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Livraison & Retours</a></li>
+          <li><a href="#">Guide des tailles</a></li>
+          <li><a href="#">Paiement sécurisé</a></li>
+          <li><a href="#">Contactez-nous</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fas fa-map-marker-alt"></i>123 Rue de la Mode, Paris</p>
+        <p><i class="fas fa-envelope"></i>directrecharge3@gmail.com</p>
+        <p><i class="fas fa-phone"></i>+33 1 23 45 67 89</p>
+        <p><i class="fas fa-clock"></i>Lun–Ven · 9h–18h</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Black Zone. Tous droits réservés.</span>
+      <div class="pay-icons">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-paypal"></i>
+        <i class="fab fa-cc-apple-pay"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-backdrop" id="cart-backdrop" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h3><i class="fas fa-shopping-bag" style="color:var(--red)"></i> Mon panier <span id="cart-head-count" style="color:var(--gray);font-weight:400;font-size:.9rem"></span></h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items">
+    <div class="cart-empty" id="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p style="font-weight:700;margin-bottom:.3rem">Votre panier est vide</p>
+      <p style="font-size:.85rem">Ajoutez des articles pour commencer</p>
+      <button class="btn btn-black btn-sm" onclick="closeCart()" style="margin-top:1.25rem">Continuer les achats</button>
+    </div>
+    <div id="cart-list"></div>
+  </div>
+  <div class="cart-foot" id="cart-foot" style="display:none">
+    <div class="promo-row">
+      <input type="text" id="promo-input" placeholder="CODE PROMO" maxlength="20">
+      <button onclick="applyPromo()">Appliquer</button>
+    </div>
+    <div class="cart-totals">
+      <div class="ct-row"><span>Sous-total</span><span id="ct-sub">0,00 €</span></div>
+      <div class="ct-row ct-discount" id="ct-discount-row"><span>🎉 Réduction (10%)</span><span id="ct-discount-val"></span></div>
+      <div class="ct-row"><span>Livraison</span><span id="ct-ship">—</span></div>
+      <div class="ct-row total"><span>Total</span><span id="ct-total">0,00 €</span></div>
+    </div>
+    <button class="cart-cta" onclick="openOrder()">
+      <i class="fas fa-lock"></i> Passer la commande
+    </button>
+  </div>
+</aside>
+
+<!-- ===== QUICK VIEW MODAL ===== -->
+<div class="modal-bg" id="qv-modal" onclick="if(event.target===this)closeQV()">
+  <div class="modal-box">
+    <div class="qv-grid">
+      <div class="qv-img-side">
+        <img id="qv-img" src="" alt="">
+      </div>
+      <div class="qv-info-side">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:.5rem">
+          <button class="modal-x" onclick="closeQV()"><i class="fas fa-times"></i></button>
+        </div>
+        <p class="qv-cat" id="qv-cat"></p>
+        <h3 class="qv-name" id="qv-name"></h3>
+        <p class="qv-price"><span id="qv-price"></span><span class="qv-old" id="qv-old"></span></p>
+        <p class="qv-desc" id="qv-desc"></p>
+        <p class="qv-label">Taille <span id="qv-size-sel" style="color:var(--red);font-weight:700"></span></p>
+        <div class="qv-sizes" id="qv-sizes"></div>
+        <div class="qv-qty-row">
+          <p class="qv-label" style="margin:0">Quantité</p>
+          <div class="qty-ctrl">
+            <button onclick="qvQtyChange(-1)">−</button>
+            <span id="qv-qty">1</span>
+            <button onclick="qvQtyChange(1)">+</button>
+          </div>
+        </div>
+        <button class="btn btn-black" style="width:100%;justify-content:center;margin-bottom:.75rem" onclick="addFromQV()">
+          <i class="fas fa-shopping-bag"></i> Ajouter au panier
+        </button>
+        <button class="btn btn-outline-dark" style="width:100%;justify-content:center" onclick="addFromQV();openCart();closeQV()">
+          Commander maintenant →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ORDER MODAL ===== -->
+<div class="modal-bg" id="order-modal" onclick="if(event.target===this)closeOrder()">
+  <div class="modal-box order-modal-box">
+
+    <!-- Form step -->
+    <div id="order-form-step">
+      <div class="order-modal-head">
+        <div>
+          <h3>Finaliser ma commande</h3>
+          <p>Remplissez vos informations de livraison</p>
+        </div>
+        <button onclick="closeOrder()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="order-summary">
+          <h4>Récapitulatif</h4>
+          <div id="order-items-recap"></div>
+        </div>
+        <form id="order-form" onsubmit="submitOrder(event)" novalidate>
+          <div class="form-row-2">
+            <div class="fgroup">
+              <label>Prénom *</label>
+              <input type="text" id="f-prenom" placeholder="Jean" required>
+              <p class="ferr" id="e-prenom">Champ requis (min. 2 car.)</p>
+            </div>
+            <div class="fgroup">
+              <label>Nom *</label>
+              <input type="text" id="f-nom" placeholder="Dupont" required>
+              <p class="ferr" id="e-nom">Champ requis (min. 2 car.)</p>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>Email *</label>
+            <input type="email" id="f-email" placeholder="jean@example.com" required>
+            <p class="ferr" id="e-email">Email invalide</p>
+          </div>
+          <div class="fgroup">
+            <label>Téléphone *</label>
+            <input type="tel" id="f-tel" placeholder="+33 6 12 34 56 78" required>
+            <p class="ferr" id="e-tel">Numéro invalide</p>
+          </div>
+          <div class="fgroup">
+            <label>Adresse *</label>
+            <input type="text" id="f-adresse" placeholder="123 Rue de la Paix" required>
+            <p class="ferr" id="e-adresse">Champ requis</p>
+          </div>
+          <div class="form-row-2">
+            <div class="fgroup">
+              <label>Code postal *</label>
+              <input type="text" id="f-cp" placeholder="75000" required>
+              <p class="ferr" id="e-cp">Champ requis</p>
+            </div>
+            <div class="fgroup">
+              <label>Ville *</label>
+              <input type="text" id="f-ville" placeholder="Paris" required>
+              <p class="ferr" id="e-ville">Champ requis</p>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>Pays</label>
+            <select id="f-pays">
+              <option value="France">France</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Suisse">Suisse</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Canada">Canada</option>
+              <option value="Maroc">Maroc</option>
+              <option value="Sénégal">Sénégal</option>
+              <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+              <option value="Bénin" selected>Bénin</option>
+              <option value="Cameroun">Cameroun</option>
+              <option value="Togo">Togo</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label>Mode de paiement</label>
+            <div class="pay-opts">
+              <div class="pay-opt active" onclick="setPay('Carte bancaire',this)"><i class="fas fa-credit-card"></i><span>Carte</span></div>
+              <div class="pay-opt" onclick="setPay('PayPal',this)"><i class="fab fa-paypal"></i><span>PayPal</span></div>
+              <div class="pay-opt" onclick="setPay('Mobile Money',this)"><i class="fas fa-mobile-alt"></i><span>Mobile</span></div>
+              <div class="pay-opt" onclick="setPay('Virement',this)"><i class="fas fa-university"></i><span>Virement</span></div>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label>Note de livraison (optionnel)</label>
+            <textarea id="f-note" rows="2" placeholder="Digicode, instructions particulières…"></textarea>
+          </div>
+          <button type="submit" class="order-submit" id="submit-btn">
+            <i class="fas fa-lock"></i> Confirmer — <span id="order-total-btn">0,00 €</span>
+          </button>
+          <p class="secure-note"><i class="fas fa-shield-alt"></i> Paiement 100% sécurisé · Données protégées</p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success step -->
+    <div id="order-success-step" style="display:none">
+      <div class="order-success">
+        <div class="success-check"><i class="fas fa-check"></i></div>
+        <h3>Commande confirmée !</h3>
+        <p>Merci <strong id="s-prenom"></strong>, votre commande a été enregistrée avec succès.</p>
+        <p>Confirmation envoyée à <strong id="s-email"></strong></p>
+        <div class="order-id-box">N° <span id="s-order-id"></span></div>
+        <button class="btn btn-black" style="width:100%;justify-content:center" onclick="closeOrder()">Continuer mes achats →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+/* ============================================================
+   CONFIG EMAILJS
+   1. Créer compte sur emailjs.com (gratuit)
+   2. Connecter Gmail : directrecharge3@gmail.com
+   3. Créer template avec : order_number, client_name, client_email,
+      client_phone, client_address, payment_method, order_items,
+      order_total, promo_code, note
+   4. Remplacer les 3 clés ci-dessous et passer DEMO_MODE à false
+============================================================ */
+const EMAILJS = {
+  publicKey:  'VOTRE_PUBLIC_KEY',
+  serviceId:  'VOTRE_SERVICE_ID',
+  templateId: 'VOTRE_TEMPLATE_ID',
+  toEmail:    'directrecharge3@gmail.com',
+  DEMO_MODE:  true
+};
+
+/* ===== PRODUITS ===== */
+const PRODUCTS = [
+  {id:1, name:'Veste Urban Black',    cat:'homme',  sub:'vestes',    price:89.99,  old:null,   badge:'new',
+   desc:'Veste légère en nylon imperméable, coupe ample tendance, logo brodé.',
+   img:'https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L','XL','XXL']},
+  {id:2, name:'Baskets Street Pro',   cat:'homme',  sub:'chaussures',price:129.99, old:null,   badge:null,
+   desc:'Sneakers rue — semelle ergonomique, tige cuir synthétique premium.',
+   img:'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80',
+   sizes:['39','40','41','42','43','44','45']},
+  {id:3, name:'T-shirt Signature',    cat:'homme',  sub:'tshirts',   price:39.99,  old:59.99,  badge:'sale',
+   desc:'Coton 100% premium 220g/m², sérigraphie logo Black Zone.',
+   img:'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L','XL']},
+  {id:4, name:'Pantalon Jogger',      cat:'homme',  sub:'pantalons', price:59.99,  old:null,   badge:null,
+   desc:'Coton stretch, taille élastiquée, confort maximal au quotidien.',
+   img:'https://images.unsplash.com/photo-1527719327859-c6ce80353573?auto=format&fit=crop&w=600&q=80',
+   sizes:['S','M','L','XL','XXL']},
+  {id:5, name:'Robe Night Out',       cat:'femme',  sub:'robes',     price:74.99,  old:99.99,  badge:'sale',
+   desc:'Robe mi-longue découpes latérales, tissu fluide stretch.',
+   img:'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L','XL']},
+  {id:6, name:'Hoodie Femme Zone',    cat:'femme',  sub:'hoodies',   price:69.99,  old:null,   badge:'new',
+   desc:'Sweat capuche oversize molleton doux, poche kangourou.',
+   img:'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L']},
+  {id:7, name:'Legging Pro Sport',    cat:'femme',  sub:'leggings',  price:49.99,  old:null,   badge:null,
+   desc:'Legging 4-way stretch, taille haute gainante, séchage rapide.',
+   img:'https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L','XL']},
+  {id:8, name:'Veste Kids Urban',     cat:'enfant', sub:'vestes',    price:49.99,  old:65.99,  badge:'sale',
+   desc:'Veste légère enfant imperméable, coutures renforcées, motifs urbains.',
+   img:'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=600&q=80',
+   sizes:['4ans','6ans','8ans','10ans','12ans']},
+  {id:9, name:'Sneakers Kids',        cat:'enfant', sub:'chaussures',price:59.99,  old:null,   badge:'new',
+   desc:'Basket enfant scratch de serrage, semelle antidérapante.',
+   img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80',
+   sizes:['28','29','30','31','32','33','34']},
+  {id:10,name:'Blouson Midnight',     cat:'homme',  sub:'vestes',    price:189.99, old:null,   badge:'limited',
+   desc:'Simili-cuir texturé premium, zip asymétrique. Édition limitée 50 pièces.',
+   img:'https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=600&q=80',
+   sizes:['S','M','L','XL']},
+  {id:11,name:'Short Running',        cat:'homme',  sub:'pantalons', price:34.99,  old:null,   badge:null,
+   desc:'Tissu quick-dry, ceinture élastique, poche zip dorsale.',
+   img:'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=600&q=80',
+   sizes:['S','M','L','XL','XXL']},
+  {id:12,name:'Top Femme Signature',  cat:'femme',  sub:'tops',      price:29.99,  old:null,   badge:null,
+   desc:'Top cropped coton stretch, dos nageur, logo BZ imprimé.',
+   img:'https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L']},
+  {id:13,name:'Hoodie Urban Men',     cat:'homme',  sub:'tshirts',   price:79.99,  old:99.99,  badge:'sale',
+   desc:'Molleton 350g, logo brodé 3D, coupe relaxed confortable.',
+   img:'https://images.unsplash.com/photo-1556821840-3a63f15732ce?auto=format&fit=crop&w=600&q=80',
+   sizes:['S','M','L','XL','XXL']},
+  {id:14,name:'Robe Casual',          cat:'femme',  sub:'robes',     price:54.99,  old:null,   badge:'new',
+   desc:'Robe casual motifs géométriques, tissu léger et fluide.',
+   img:'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L','XL']},
+  {id:15,name:'Ensemble Sport Femme', cat:'femme',  sub:'leggings',  price:84.99,  old:109.99, badge:'sale',
+   desc:'Legging gainant + top cropped coordonné, finition bande rouge.',
+   img:'https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=600&q=80',
+   sizes:['XS','S','M','L']},
+  {id:16,name:'T-shirt Enfant BZ',    cat:'enfant', sub:'tshirts',   price:24.99,  old:null,   badge:'new',
+   desc:'T-shirt 100% coton doux, imprimé Black Zone, couleurs vives.',
+   img:'https://images.unsplash.com/photo-1519278409-1f56fdda7fe5?auto=format&fit=crop&w=600&q=80',
+   sizes:['4ans','6ans','8ans','10ans','12ans']},
+];
+
+/* ===== STATE ===== */
+let cart      = JSON.parse(localStorage.getItem('bz_cart')||'[]');
+let wishes    = JSON.parse(localStorage.getItem('bz_wish')||'[]');
+let promo     = {code:'', pct:0};
+let currentF  = 'all';
+let shown     = 8;
+let qvProduct = null;
+let qvSize    = '';
+let qvQty     = 1;
+let payMethod = 'Carte bancaire';
+
+/* ===== UTILS ===== */
+const qs   = s => document.querySelector(s);
+const qid  = id => document.getElementById(id);
+const fmt  = n => n.toFixed(2).replace('.',',') + ' €';
+const isEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const isTel   = t => t.replace(/\D/g,'').length >= 8;
+
+function scrollTo(sel) {
+  const el = qs(sel);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ===== TOAST ===== */
+let _tt;
+function toast(msg, type='') {
+  const t = qid('toast');
+  clearTimeout(_tt);
+  t.innerHTML = msg;
+  t.style.borderLeftColor = type === 'ok' ? '#16a34a' : type === 'err' ? 'var(--red)' : 'var(--red)';
+  t.classList.add('show');
+  _tt = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+/* ===== HEADER SCROLL ===== */
+window.addEventListener('scroll', () => {
+  qid('header').classList.toggle('scrolled', scrollY > 40);
+}, {passive:true});
+
+/* ===== BURGER MENU ===== */
+const burgerBtn = qid('burger');
+const mobileNavEl = qid('mobile-nav');
+burgerBtn.addEventListener('click', () => {
+  const open = burgerBtn.classList.toggle('open');
+  mobileNavEl.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMobileNav() {
+  burgerBtn.classList.remove('open');
+  mobileNavEl.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ===== PAGE NAV ===== */
+function showPage(page) {
+  document.querySelectorAll('.bz-page').forEach(p => p.style.display = 'none');
+  const el = qid('page-'+page);
+  if(el) el.style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Nav active
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const nl = qid('nl-'+page);
+  if(nl) nl.classList.add('active');
+  // Render cat pages
+  if(page==='homme') renderCat('homme','all');
+  if(page==='femme') renderCat('femme','all');
+  if(page==='enfant') renderCat('enfant','all');
+  closeMobileNav();
+  setTimeout(initReveal, 100);
+}
+
+/* ===== PRODUCT CARD HTML ===== */
+function cardHTML(p) {
+  const disc = p.old ? Math.round((1 - p.price/p.old)*100) : null;
+  const isWished = wishes.includes(p.id);
+  const badgeMap = {new:'badge-new',sale:'badge-sale',limited:'badge-limited'};
+  const badgeLabel = {new:'Nouveau',sale:'Promo',limited:'Limité'};
+  return `
+  <div class="pcard" data-id="${p.id}">
+    <div class="pcard-img">
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onclick="openQV(${p.id})">
+      ${p.badge ? `<span class="pcard-badge ${badgeMap[p.badge]||''}">${badgeLabel[p.badge]||p.badge}</span>` : ''}
+      ${disc ? `<span class="badge-pct">−${disc}%</span>` : ''}
+      <button class="pcard-wish ${isWished?'active':''}" onclick="toggleWish(${p.id},this)" aria-label="Wishlist">
+        <i class="${isWished?'fas':'far'} fa-heart" ${isWished?'style="color:#fff"':''}></i>
+      </button>
+    </div>
+    <div class="pcard-body">
+      <p class="pcard-cat">${p.cat}</p>
+      <h3 class="pcard-name">${p.name}</h3>
+      <p class="pcard-desc">${p.desc.substring(0,62)}…</p>
+      <div class="pcard-footer">
+        <div class="pcard-price">
+          ${p.old ? `<span class="pcard-old">${fmt(p.old)}</span>` : ''}
+          ${fmt(p.price)}
+        </div>
+        <div class="pcard-actions">
+          <button class="pcard-add" onclick="addToCart(${p.id},'${p.sizes[0]}',1)">+ Ajouter</button>
+          <button class="pcard-view" onclick="openQV(${p.id})" aria-label="Aperçu"><i class="fas fa-eye"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ===== HOME PRODUCTS ===== */
+function renderHome() {
+  let list = currentF === 'all' ? PRODUCTS
+    : currentF === 'promo' ? PRODUCTS.filter(p => p.old || p.badge === 'sale')
+    : currentF === 'limited' ? PRODUCTS.filter(p => p.badge === 'limited')
+    : PRODUCTS.filter(p => p.cat === currentF);
+  const s = list.slice(0, shown);
+  const grid = qid('products-grid');
+  if(!grid) return;
+  grid.innerHTML = s.length
+    ? s.map(cardHTML).join('')
+    : '<p style="grid-column:1/-1;text-align:center;color:var(--gray);padding:3rem">Aucun produit dans cette catégorie.</p>';
+  const lm = qid('load-more-btn');
+  if(lm) lm.style.display = s.length < list.length ? 'inline-flex' : 'none';
+  setTimeout(initReveal, 50);
+}
+
+function filter(f) {
+  currentF = f; shown = 8;
+  document.querySelectorAll('.filter-tab[data-f]').forEach(b => b.classList.toggle('active', b.dataset.f === f));
+  renderHome();
+}
+function loadMore() { shown += 4; renderHome(); }
+
+/* ===== CAT PAGES ===== */
+function renderCat(cat, sub) {
+  const id = cat + '-grid';
+  const grid = qid(id);
+  if(!grid) return;
+  let list = PRODUCTS.filter(p => p.cat === cat);
+  if(sub && sub !== 'all') list = list.filter(p => p.sub === sub);
+  grid.innerHTML = list.length ? list.map(cardHTML).join('') : '<p style="grid-column:1/-1;text-align:center;color:var(--gray);padding:3rem">Aucun article trouvé.</p>';
+  setTimeout(initReveal, 50);
+}
+
+function filterCat(cat, sub, btn) {
+  renderCat(cat, sub);
+  const parentId = cat + '-filters';
+  const parent = qid(parentId);
+  if(parent) parent.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+/* ===== WISHLIST ===== */
+function toggleWish(id, btn) {
+  const p = PRODUCTS.find(x => x.id === id);
+  const idx = wishes.indexOf(id);
+  const icon = btn.querySelector('i');
+  if(idx === -1) {
+    wishes.push(id);
+    btn.classList.add('active');
+    icon.className = 'fas fa-heart';
+    icon.style.color = '#fff';
+    toast(`<b>${p.name}</b> ajouté aux favoris`, 'ok');
+  } else {
+    wishes.splice(idx,1);
+    btn.classList.remove('active');
+    icon.className = 'far fa-heart';
+    icon.style.color = '';
+    toast(`<b>${p.name}</b> retiré des favoris`);
+  }
+  localStorage.setItem('bz_wish', JSON.stringify(wishes));
+}
+
+/* ===== CART ===== */
+const saveCart = () => localStorage.setItem('bz_cart', JSON.stringify(cart));
+const getSub   = () => cart.reduce((s,i) => s + i.price * i.qty, 0);
+const getShip  = () => getSub() >= 80 ? 0 : 5.99;
+const getDisc  = () => promo.pct > 0 ? getSub() * promo.pct : 0;
+const getTotal = () => Math.max(0, getSub() - getDisc() + getShip());
+const getCount = () => cart.reduce((s,i) => s + i.qty, 0);
+
+function addToCart(id, size, qty = 1) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  const key = id + '-' + size;
+  const ex = cart.find(i => i.key === key);
+  if(ex) ex.qty = Math.min(ex.qty + qty, 10);
+  else cart.push({key, id, name:p.name, img:p.img, price:p.price, size, qty});
+  saveCart(); updateCartUI(); pulseBadge();
+  toast(`✅ <b>${p.name}</b> (${size}) ajouté au panier`, 'ok');
+}
+
+function removeFromCart(key) {
+  cart = cart.filter(i => i.key !== key);
+  saveCart(); updateCartUI();
+}
+
+function changeQty(key, d) {
+  const item = cart.find(i => i.key === key);
+  if(!item) return;
+  item.qty = Math.max(1, Math.min(10, item.qty + d));
+  saveCart(); updateCartUI();
+}
+
+function pulseBadge() {
+  const b = qid('cart-badge');
+  b.style.transform = 'scale(1.7)';
+  setTimeout(() => b.style.transform = '', 220);
+}
+
+function applyPromo() {
+  const code = qid('promo-input').value.trim().toUpperCase();
+  if(code === 'BLACKZONE10') {
+    if(promo.code === code) { toast('Code déjà appliqué.'); return; }
+    promo = {code, pct:0.1};
+    toast('🎉 Code <b>BLACKZONE10</b> appliqué — 10% de réduction !', 'ok');
+  } else {
+    promo = {code:'', pct:0};
+    toast('❌ Code promo invalide.', 'err');
+  }
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const count = getCount();
+  const sub   = getSub();
+  const disc  = getDisc();
+  const ship  = getShip();
+  const total = getTotal();
+
+  // Badge
+  const badge = qid('cart-badge');
+  badge.textContent = count;
+  badge.classList.toggle('show', count > 0);
+
+  // Head count
+  const hc = qid('cart-head-count');
+  if(hc) hc.textContent = count > 0 ? `(${count})` : '';
+
+  const emptyEl = qid('cart-empty');
+  const listEl  = qid('cart-list');
+  const footEl  = qid('cart-foot');
+
+  if(cart.length === 0) {
+    emptyEl.style.display = 'block';
+    listEl.innerHTML = '';
+    footEl.style.display = 'none';
+    return;
+  }
+
+  emptyEl.style.display = 'none';
+  footEl.style.display = 'block';
+
+  listEl.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-size">Taille : <strong>${item.size}</strong></div>
+        <div class="ci-price">${fmt(item.price * item.qty)}</div>
+        <div class="ci-qty">
+          <button onclick="changeQty('${item.key}',-1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.key}',1)">+</button>
+        </div>
+      </div>
+      <button class="ci-del" onclick="removeFromCart('${item.key}')" aria-label="Supprimer"><i class="fas fa-times"></i></button>
+    </div>`).join('');
+
+  qid('ct-sub').textContent  = fmt(sub);
+  qid('ct-ship').textContent = ship === 0 ? 'Gratuite 🎉' : fmt(ship);
+  qid('ct-total').textContent = fmt(total);
+
+  const discRow = qid('ct-discount-row');
+  discRow.style.display = disc > 0 ? 'flex' : 'none';
+  if(disc > 0) qid('ct-discount-val').textContent = '−' + fmt(disc);
+
+  // Sync order modal
+  const otb = qid('order-total-btn');
+  if(otb) otb.textContent = fmt(total);
+}
+
+function openCart() {
+  qid('cart-backdrop').classList.add('open');
+  qid('cart-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  qid('cart-backdrop').classList.remove('open');
+  qid('cart-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ===== QUICK VIEW ===== */
+function openQV(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  qvProduct = p; qvSize = ''; qvQty = 1;
+
+  qid('qv-img').src   = p.img;
+  qid('qv-img').alt   = p.name;
+  qid('qv-cat').textContent  = p.cat.toUpperCase() + ' · ' + p.sub.toUpperCase();
+  qid('qv-name').textContent = p.name;
+  qid('qv-price').textContent = fmt(p.price);
+  const oldEl = qid('qv-old');
+  oldEl.textContent = p.old ? fmt(p.old) : '';
+  oldEl.style.display = p.old ? 'inline' : 'none';
+  qid('qv-desc').textContent = p.desc;
+  qid('qv-qty').textContent  = '1';
+  qid('qv-size-sel').textContent = '';
+
+  qid('qv-sizes').innerHTML = p.sizes.map(s =>
+    `<button class="size-btn" onclick="selectSize('${s}',this)">${s}</button>`
+  ).join('');
+
+  qid('qv-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQV() {
+  qid('qv-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function selectSize(s, btn) {
+  qvSize = s;
+  document.querySelectorAll('#qv-sizes .size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  qid('qv-size-sel').textContent = s;
+}
+function qvQtyChange(d) {
+  qvQty = Math.max(1, Math.min(10, qvQty + d));
+  qid('qv-qty').textContent = qvQty;
+}
+function addFromQV() {
+  if(!qvSize) { toast('⚠️ Veuillez sélectionner une taille.', 'err'); return; }
+  addToCart(qvProduct.id, qvSize, qvQty);
+  closeQV();
+}
+
+/* ===== ORDER MODAL ===== */
+function openOrder() {
+  if(!cart.length) { toast('⚠️ Votre panier est vide.', 'err'); return; }
+  const sub   = getSub();
+  const disc  = getDisc();
+  const ship  = getShip();
+  const total = getTotal();
+
+  // Recap
+  const recap = qid('order-items-recap');
+  recap.innerHTML = cart.map(i => `
+    <div class="os-item"><span>${i.name} ×${i.qty} <em style="color:var(--gray)">(${i.size})</em></span><span>${fmt(i.price*i.qty)}</span></div>
+  `).join('')
+  + (disc > 0 ? `<div class="os-item" style="color:#16a34a"><span>Code ${promo.code} −10%</span><span>−${fmt(disc)}</span></div>` : '')
+  + `<div class="os-item"><span>Livraison</span><span>${ship===0?'Gratuite':fmt(ship)}</span></div>`
+  + `<div class="os-total"><span>Total</span><span style="color:var(--red)">${fmt(total)}</span></div>`;
+
+  qid('order-total-btn').textContent = fmt(total);
+  qid('order-form-step').style.display = 'block';
+  qid('order-success-step').style.display = 'none';
+  qid('order-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  closeCart();
+}
+function closeOrder() {
+  qid('order-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function setPay(m, el) {
+  payMethod = m;
+  document.querySelectorAll('.pay-opt').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function validateF(id, errId, check) {
+  const el = qid(id);
+  const err = qid(errId);
+  const ok = check(el.value.trim());
+  el.classList.toggle('err', !ok);
+  err.classList.toggle('show', !ok);
+  return ok;
+}
+
+function submitOrder(e) {
+  e.preventDefault();
+  let valid = true;
+  valid = validateF('f-prenom','e-prenom', v => v.length >= 2) && valid;
+  valid = validateF('f-nom',   'e-nom',    v => v.length >= 2) && valid;
+  valid = validateF('f-email', 'e-email',  isEmail)            && valid;
+  valid = validateF('f-tel',   'e-tel',    isTel)              && valid;
+  valid = validateF('f-adresse','e-adresse',v => v.length >= 5)&& valid;
+  valid = validateF('f-cp',    'e-cp',     v => v.length >= 3) && valid;
+  valid = validateF('f-ville', 'e-ville',  v => v.length >= 2) && valid;
+  if(!valid) { toast('⚠️ Corrigez les erreurs du formulaire.', 'err'); return; }
+
+  const prenom = qid('f-prenom').value.trim();
+  const nom    = qid('f-nom').value.trim();
+  const email  = qid('f-email').value.trim();
+  const tel    = qid('f-tel').value.trim();
+  const adresse= qid('f-adresse').value.trim();
+  const cp     = qid('f-cp').value.trim();
+  const ville  = qid('f-ville').value.trim();
+  const pays   = qid('f-pays').value;
+  const note   = qid('f-note').value.trim();
+  const orderId = 'BZ-' + Date.now().toString(36).toUpperCase();
+
+  const btn = qid('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner" style="animation:spin .8s linear infinite"></i> Traitement…';
+
+  const params = {
+    order_number:   orderId,
+    client_name:    prenom + ' ' + nom,
+    client_email:   email,
+    client_phone:   tel,
+    client_address: adresse + ', ' + cp + ' ' + ville + ', ' + pays,
+    payment_method: payMethod,
+    order_items:    cart.map(i=>`${i.name} (${i.size}) ×${i.qty} = ${fmt(i.price*i.qty)}`).join('\n'),
+    order_total:    fmt(getTotal()),
+    promo_code:     promo.code || 'Aucun',
+    note:           note || 'Aucune note',
+    to_email:       EMAILJS.toEmail,
+  };
+
+  function onSuccess() {
+    qid('s-prenom').textContent  = prenom;
+    qid('s-email').textContent   = email;
+    qid('s-order-id').textContent = orderId;
+    qid('order-form-step').style.display = 'none';
+    qid('order-success-step').style.display = 'block';
+    cart = []; promo = {code:'', pct:0};
+    saveCart(); updateCartUI();
+    toast('🎉 Commande confirmée ! Merci ' + prenom + '.', 'ok');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-lock"></i> Confirmer — <span id="order-total-btn">' + fmt(getTotal()) + '</span>';
+  }
+
+  if(EMAILJS.DEMO_MODE) {
+    console.log('📦 [DEMO] Commande :', params);
+    setTimeout(onSuccess, 1500);
+  } else {
+    emailjs.init(EMAILJS.publicKey);
+    emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, params)
+      .then(onSuccess)
+      .catch(err => {
+        console.error(err);
+        toast('⚠️ Erreur email. Commande enregistrée quand même.', 'err');
+        setTimeout(onSuccess, 500);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Confirmer';
+      });
+  }
+}
+
+/* ===== NEWSLETTER ===== */
+function subscribeNL(e) {
+  e.preventDefault();
+  const email = qid('nl-email').value.trim();
+  const fb = qid('nl-feedback');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    fb.textContent = 'Adresse email invalide.';
+    fb.className = 'nl-feedback';
+    return;
+  }
+  fb.textContent = '✅ Inscription réussie ! Votre code −10% arrive par email.';
+  fb.className = 'nl-feedback ok';
+  qid('nl-email').value = '';
+  setTimeout(() => fb.textContent = '', 5000);
+}
+
+/* ===== SEARCH ===== */
+function openSearch() {
+  const bar = qid('search-bar');
+  bar.classList.add('open');
+  qid('search-input').focus();
+}
+function closeSearch() {
+  qid('search-bar').classList.remove('open');
+  qid('search-results').innerHTML = '';
+  qid('search-input').value = '';
+}
+qid('search-input').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  const res = qid('search-results');
+  if(!q) { res.innerHTML = ''; return; }
+  const hits = PRODUCTS.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.cat.toLowerCase().includes(q) ||
+    p.desc.toLowerCase().includes(q)
+  ).slice(0,6);
+  res.innerHTML = hits.length
+    ? hits.map(p => `
+        <div class="search-item" onclick="closeSearch();openQV(${p.id})">
+          <img src="${p.img}" alt="${p.name}">
+          <div>
+            <div class="search-item-name">${p.name}</div>
+            <div class="search-item-price">${fmt(p.price)}</div>
+          </div>
+        </div>`).join('')
+    : '<div class="search-item" style="color:var(--gray);cursor:default">Aucun résultat trouvé</div>';
+});
+
+/* ===== COUNTDOWN ===== */
+(function countdown() {
+  function tick() {
+    const now = new Date();
+    const end = new Date(now); end.setHours(23,59,59,0);
+    const d = Math.max(0, end - now);
+    const pad = n => String(n).padStart(2,'0');
+    qid('cd-h').textContent = pad(Math.floor(d/3600000));
+    qid('cd-m').textContent = pad(Math.floor((d%3600000)/60000));
+    qid('cd-s').textContent = pad(Math.floor((d%60000)/1000));
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* ===== SCROLL REVEAL ===== */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }});
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal,.pcard,.tcard').forEach(el => {
+    if(!el.classList.contains('on')) { el.classList.add('reveal'); obs.observe(el); }
+  });
+}
+
+/* ===== ESC KEY ===== */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') { closeSearch(); closeQV(); closeOrder(); closeCart(); }
+});
+
+/* ===== SPIN KEYFRAME ===== */
+const style = document.createElement('style');
+style.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+document.head.appendChild(style);
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  renderHome();
+  updateCartUI();
+  setTimeout(initReveal, 200);
+  window.addEventListener('scroll', initReveal, {passive:true});
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 768) closeMobileNav();
+  });
+});
+</script>
+</body>
+</html>
